@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>great leaders</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+        body {
+            font-family: Montserrat, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6c6969; /* dark blueish-white */
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 37px;
+            font-weight: bold italic;
+            color: #07080b;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 600px;
+            height: 435px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .gallery img {
+            width: 600px;
+            height: 350px;
+            display: none;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .gallery img.active {
+            display: block;
+        }
+
+        .caption {
+            font-size: 19px;
+            font-weight:  italic;
+            color: #070606;
+            margin-top: 6px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Great Leaders</h1>
+
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="C:\Users\Devika S\Desktop\screenshots\image 1.png" alt="Royal Enfield Continental GT 650 Special Ed">
+            <p class="caption">Mahatma Gandhi</p>
+
+            <img src="C:\Users\Devika S\Desktop\screenshots\image 2.png" alt="2019 Yamaha YZF-R15">
+            <p class="caption">Abdul Kalam</p>
+            <img src="C:\Users\Devika S\Desktop\screenshots\image 3.png" alt="Kawasaki Ninja H2R">
+            <p class="caption">Jawaharlal Nehru</p>
+            <img src="C:\Users\Devika S\Desktop\screenshots\image 4.png" alt="Suzuki Hayabusa">
+            <p class="caption">Subhash Chandra Bose</p>
+        </div>
+
+        <button id="prev">❮</button>
+        <button id="next">❯</button>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.gallery img');
+        const captions = document.querySelectorAll('.caption');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach(img => img.classList.remove('active'));
+            captions.forEach(cap => cap.style.display = 'none');
+
+            images[index].classList.add('active');
+            captions[index].style.display = 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            showImage(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        });
+
+        // Initial display
+        showImage(currentIndex);
+    </script>
+
+</body>
+</html>
